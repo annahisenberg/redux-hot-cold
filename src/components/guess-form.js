@@ -1,17 +1,30 @@
 import React from 'react';
-
 import './guess-form.css';
 
+import { makeGuess } from '../actions';
+
 export default class GuessForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      guessedNum: ''
+    }
+    this.onChange = this.onChange.bind(this);
+  }
+
   onSubmit(event) {
     event.preventDefault();
 
-    if (this.props.onMakeGuess) {
-      const value = this.input.value;
-      this.props.onMakeGuess(value);
-    }
     this.input.value = '';
     this.input.focus();
+
+    this.props.dispatch(makeGuess(this.state.guessedNum));
+  }
+
+  onChange(e) {
+    this.setState({
+      guessedNum: e.target.value
+    })
   }
 
   render() {
@@ -24,15 +37,16 @@ export default class GuessForm extends React.Component {
           className="text"
           min="1"
           max="100"
+          onChange={this.onChange}
           autoComplete="off"
           aria-labelledby="feedback"
-          ref={input => (this.input = input)}
           required
+          value={this.state.guessedNum}
         />
-        <button 
+        <button
           type="submit"
           name="submit"
-          id="guessButton" 
+          id="guessButton"
           className="button"
         >
           Guess
@@ -41,3 +55,4 @@ export default class GuessForm extends React.Component {
     );
   }
 }
+

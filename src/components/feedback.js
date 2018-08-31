@@ -15,7 +15,7 @@ export default function Feedback(props) {
     guessAgain = <span className="visuallyhidden">Guess again!</span>;
   }
   return (
-    <h2 
+    <h2
       key={key}
       id="feedback"
       role="status"
@@ -26,3 +26,8 @@ export default function Feedback(props) {
     </h2>
   );
 }
+
+const mapStateToProps = state => ({
+  feedback: state.feedback,
+  guessCount: state.guesses.length
+});
