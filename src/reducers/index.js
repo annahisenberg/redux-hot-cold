@@ -56,6 +56,8 @@ export const hotColdReducer = (state = initialState, action) => {
             auralStatus: '',
             correctAnswer: Math.floor(Math.random() * 100) + 1
         });
+    } else {
+        return state;
     }
 }
 

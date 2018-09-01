@@ -15,8 +15,8 @@ export default class GuessForm extends React.Component {
   onSubmit(event) {
     event.preventDefault();
 
-    this.input.value = '';
-    this.input.focus();
+    // this.input.value = '';
+    // this.input.focus();
 
     this.props.dispatch(makeGuess(this.state.guessedNum));
   }
